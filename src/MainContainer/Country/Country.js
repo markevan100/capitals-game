@@ -5,7 +5,7 @@ const Country = props => {
   return (
     <div className="country__container">
       <h1>Country</h1>
-      <h2>Turkey</h2>
+      <h2>{props.country}</h2>
     </div>
   )
 }

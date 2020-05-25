@@ -1,46 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Capital.css'
 
-class Capital extends Component {
-  state = {
-    guess: '',
-    answer: 'Ankara',
-    correct: false,
-    incorrect: false
-  }
+const Capital = props => {
 
-  submitHandler = e => {
-    e.preventDefault();
-    if (this.state.guess === this.state.answer) {
-      this.setState({correct: true, incorrect: false})
-    } else {
-      this.setState({incorrect: true, correct: false})
-    }
-  }
 
-  changeHandler = e => {
-    this.setState({guess: e.target.value});
-  }
-
-  render() {
-    return (
-      <div className="capital__container">
-        <h1>Capital </h1>
-        <form onSubmit={this.submitHandler}>
-          <input type='text' onChange={this.changeHandler}/>
-        </form>
-        { this.state.incorrect ?
-          <div className="capital__answer-container capital__incorrect">
-            Sorry, the capital is {this.state.answer}.
-          </div> : null }
-        { this.state.correct ?
-          <div className="capital__answer-container capital__correct">
-            You're right, the capital is {this.state.answer}!
-          </div> : null }
-      </div>
-    );
-  }
+  return (
+    <div className="capital__container">
+      <h1>Capital </h1>
+      <form onSubmit={props.submitted}>
+        <input type='text' value={props.guess} onChange={props.changed}/>
+      </form>
+      { props.incorrect ?
+        <div className="capital__answer-container capital__incorrect">
+          Sorry, the capital is {props.capital}.
+        </div> : null }
+      { props.correct ?
+        <div className="capital__answer-container capital__correct">
+          You're right, the capital is {props.capital}!
+        </div> : null }
+    </div>
+  );
 }
 
-
-export default Capital
+export default Capital;
